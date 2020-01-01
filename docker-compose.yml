@@ -1,0 +1,34 @@
+version: '3.4'
+
+services:
+
+  orders-api:
+    image: ${DOCKER_REGISTRY}orderapi
+    networks:
+      - order-app-network
+    build:
+      context: orders-backend
+      dockerfile: Dockerfile
+    ports:
+      - "6001:3001"
+  
+  payments-api:
+    image: ${DOCKER_REGISTRY}paymentapi
+    networks:
+      - order-app-network
+    build:
+      context: payments-backend
+      dockerfile: Dockerfile 
+    ports:
+      - "6002:3002"   
+
+networks:
+  order-app-network:
+
+volumes:
+  data-db:
+
+    
+    
+    
+
